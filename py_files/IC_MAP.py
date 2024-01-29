@@ -481,47 +481,6 @@ def try_get_conditioned_reconstriction_sequence_(inds_placed: list,
 
 ###########################################################################
 
-import networkx as nx
-
-def make_snakes_(am, head):
-    G = nx.from_numpy_matrix(am)
-    L = 4
-    result = []
-    for paths in (nx.all_simple_paths(G, head, target, L) for target in G.nodes()):
-        result+=paths    
-        
-    return [x for x in result if len(x)==4]
-
-def get_ABCD_v3_(am):
-    am = np.array(am)
-    n_atoms = len(am)
-    all_snakes = []
-
-    for i in range(n_atoms):
-        ith_snakes = make_snakes_(am, i)
-        all_snakes += (ith_snakes)
-
-    str_bodies = [str(x[1:3]) for x in all_snakes]
-    unique_bodies = list(set(str_bodies))
-    
-    inds = np.arange(len(am))
-    che = []
-    print('Note: if this method is slow, then it is stuck and doesnt work.')
-    a = 0
-    while len(che) < n_atoms:
-        try:
-            for i in range(len(unique_bodies)):
-                for j in range(len(str_bodies)):
-                    if unique_bodies[i] in str_bodies[j] and all_snakes[j][0] == inds[a]:
-                        a+=1
-                        che.append(all_snakes[j])
-                    else: pass
-        except: break
-            
-    return np.array(che)
-
-##########################################################################
-
 def depth_first_search_(graph, node):
     # Reference:  https://www.educative.io/edpresso/how-to-implement-depth-first-search-in-python
     nodes = set() ; visited = set()
@@ -615,7 +574,8 @@ class XR_MAP_mixed_only:
         if ABCD_method == 0:
             self.ABCD = get_neighbour_lists_(self.adjacency_matrix).tolist()
         else:
-            self.ABCD = get_ABCD_v3_(self.adjacency_matrix).tolist()
+            print('method removed until fixed')
+            #self.ABCD = get_ABCD_v3_(self.adjacency_matrix).tolist()
 
         #'''
         if self.automatic_search_for_stA_and_stBC_():
