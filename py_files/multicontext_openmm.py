@@ -218,7 +218,7 @@ class MultiContext:
                     # initialize state
                     self._openmm_context.setPositions(positions)
                     if box_vectors is not None:
-                        self._openmm_context.setPeriodicBoxVectors(box_vectors)
+                        self._openmm_context.setPeriodicBoxVectors(*box_vectors)
                     log_path_probability_ratio = self._openmm_integrator.step(n_simulation_steps)
 
                     # compute energy and forces
