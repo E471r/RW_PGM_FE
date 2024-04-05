@@ -24,7 +24,7 @@ smiv = Single_Molecule_In_Vaccum(PDB,
 smiv.prepare_simulation_('AD'+str(T)+'b', 500000,
                          initial_conformer = smiv.pdb_conformer,
                          inds_torsional_CVs = inds_CVs,
-                         FES_bandwidth = 0.07, 
+                         FES_bandwidth = 0.07, # could have been 0.01285714 # the only unclear part.
                          FES_n_bins = 150,
                         )
 smiv.run_simulation_(500000)
