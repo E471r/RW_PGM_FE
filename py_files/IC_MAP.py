@@ -31,9 +31,9 @@ def get_angle_tf_(R, inds_3_atoms):
     # inds_3_atoms : (3,)
 
     A,B,C = inds_3_atoms
-    rA = R[:,A,:] # (...,3)
-    rB = R[:,B,:] # (...,3)
-    rC = R[:,C,:] # (...,3)
+    rA = R[...,A,:] # (...,3)
+    rB = R[...,B,:] # (...,3)
+    rC = R[...,C,:] # (...,3)
 
     vBA = rA - rB # (...,3)
     vBC = rC - rB # (...,3)
