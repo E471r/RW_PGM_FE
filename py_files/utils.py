@@ -179,7 +179,13 @@ class Single_Molecule_In_Vaccum:
                                  3000,#*unit.kelvin,              # deltaT 
                                  0.5, #*unit.kilojoules_per_mole, # h0
                                  frequency = self.stride_biased)
-            ## 
+            '''
+            LangevinIntegrator was later swapped to LangevinMiddleIntegrator, 
+            which gave correct absolute BAR convergence properties (ice, molecular crystals, 
+            and several unpublished results with small molecules). All of this functionality 
+            will (re)appear in FEcrys folder at some point (maintained).
+            RW_PGM_FE folder is not maintained.
+            '''
             self.integrator = mm.LangevinIntegrator(self.T_of_simulation*unit.kelvin,
                                         1.0/unit.picosecond,
                                         self.temestep_ps*unit.picoseconds)
